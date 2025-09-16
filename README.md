@@ -1,77 +1,88 @@
-# Diplom_3Дипломный проект. Задание 3: Автотесты для UI
+# 🍔 Stellar Burgers — Автотесты для UI
 
-Студентка: Иванова Кристина
+**Студент:** Иванова Кристина  
+**Когорта:** 27
 
-Когорта: 26
+Дипломный проект по автоматизации тестирования UI для сервиса Stellar Burgers.
 
-Автотесты для сервиса Stellar Burgers
+---
 
-Проект реализован по паттерну Page Object.
+## 🔗 Ссылки
 
-Каждая страница сайта имеет свой класс с методами и локаторами.
+- [Официальный сайт Stellar Burgers](https://stellarburgers.nomoreparties.site/)
+- [API документация](https://code.s3.yandex.net/qa-automation-engineer/python/teach/docs/index.html)
 
-Протестировано в Google Chrome и Mozilla Firefox.
+---
 
-Ссылки
+## 🏗️ Архитектура проекта
 
-🍔 Сайт Stellar Burgers
-🔧 API-документация
- Структура проекта
+Проект реализован с использованием паттерна **Page Object Model**.
 
- tests — папка с UI автотестами
-conftest.py — основные фикстуры
-test_main_page.py — тесты основной функциональности (навигация, модальные окна, счетчики ингредиентов)
-test_order_feed.py — тесты страницы "Лента заказов" (счетчики, отображение заказов)
- pages — папка с Page Object'ами
-base_page.py — базовый класс для работы с веб-элементами
-main_page.py — Page Object для главной страницы (Конструктор)
-order_page.py — Page Object для страницы "Лента заказов"
-login_page.py — Page Object для страницы авторизации/регистрации
- locators.py — файл с локаторами элементов для всех страниц
- utils — вспомогательные модули
-generators.py — генераторы тестовых данных
-urls.py — URL и эндпоинты API
- requirements.txt — зависимости
-allure-results — папка с результатами Allure (генерируется при запуске)
+tests/
+├── conftest.py # Фикстуры и настройки
+├── test_main_page.py # Тесты основной функциональности
+└── test_order_feed.py # Тесты ленты заказов
 
- Инструкция по запуску:
+pages/
+├── base_page.py # Базовый класс страницы
+├── main_page.py # Главная страница (Конструктор)
+├── order_page.py # Лента заказов
+└── login_page.py # Страница авторизации
 
-1. Установите зависимости:
+locators.py # Локаторы элементов
+utils/
+├── generators.py # Генераторы тестовых данных
+└── urls.py # URL и эндпоинты API
+
+requirements.txt # Зависимости проекта
+allure-results/ # Отчеты Allure (генерируется)
+
+
+---
+
+## 🧪 Реализованные тесты
+
+### 📋 Основная функциональность (`test_main_page.py`)
+
+| Тест | Описание |
+|------|----------|
+| `test_click_on_constructor_button_redirects_to_constructor_page` | Переход на главную страницу через кнопку "Конструктор" |
+| `test_click_on_feed_button_redirects_to_feed_page` | Переход на страницу "Лента заказов" |
+| `test_click_on_ingredient_opens_modal_window` | Открытие модального окна с деталями ингредиента |
+| `test_close_modal_window_with_close_button` | Закрытие модального окна крестиком |
+| `test_ingredient_counter_increases_by_using_drag_and_drop` | Увеличение счетчика ингредиента через drag-and-drop |
+
+### 📊 Лента заказов (`test_order_feed.py`)
+
+| Тест | Описание |
+|------|----------|
+| `test_upgrade_counter_orders` | Проверка увеличения счетчиков выполненных заказов |
+| `test_visible_order_number_in_progress` | Отображение номера заказа в разделе "В работе" |
+
+---
+
+## 🚀 Запуск тестов
+
+### 1. Установка зависимостей
+```bash
 pip install -r requirements.txt
 
-2. Запустить все тесты и записать отчет:
+### 2. Запуск тестов с генерацией отчета
+```bash
 pytest --alluredir=./allure-results
 
-Описание реализованных тестов
+### 3. Просмотр отчета Allure
+```bash
+allure serve allure-results
 
-✅ test_main_page.py
+🛠️ Технологии
 
-test_click_on_constructor_button_redirects_to_constructor_page
+Python + pytest — фреймворк для тестирования
+Selenium WebDriver — автоматизация браузера
+Allure — система отчетности
+Page Object Pattern — архитектура проекта
 
-Проверяет переход на главную страницу (Конструктор) при клике на ссылку "Конструктор".
+🌐 Поддержка браузеров
 
-test_click_on_feed_button_redirects_to_feed_page
-
-Проверяет переход на страницу "Лента заказов" при клике на соответствующую ссылку.
-
-test_click_on_ingredient_opens_modal_window
-
-Проверяет, что при клике на ингредиент открывается модальное окно с деталями.
-
-test_close_modal_window_with_close_button
-
-Проверяет, что модальное окно с деталями ингредиента закрывается по клику на крестик.
-
-test_ingredient_counter_increases_by_using_drag_and_drop
-
-Проверяет, что счетчик ингредиента увеличивается после его добавления в заказ методом drag-and-drop.
-
- ✅ test_order_feed.py
-
-test_upgrade_counter_orders
-
-Проверяет, что счетчики "Выполнено за всё время" и "за сегодня" увеличиваются после создания заказа.
-
-test_visible_order_number_in_progress
-
-Проверяет, что номер нового заказа появляется в разделе "В работе" на странице "Лента заказов".
+✅ Google Chrome
+✅ Mozilla Firefox
